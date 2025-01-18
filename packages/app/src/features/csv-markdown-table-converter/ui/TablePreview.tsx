@@ -20,7 +20,7 @@ export const TablePreview = ({ headers, rows, selectedHeaders }: Props) => {
 
   return (
     <div className="space-y-4">
-      <h2 className="font-semibold">プレビュー</h2>
+      <h2 className="font-semibold">Table Preview</h2>
       <div className="overflow-x-auto">
         <table className="w-full min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">

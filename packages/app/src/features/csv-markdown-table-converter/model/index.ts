@@ -1,12 +1,28 @@
 import type { ParsedCSV } from "../../../shared/lib/csv";
+import type { Alignment } from "../../../shared/ui/select-alignment";
+
+const getAlignSymbol = (align: Alignment | "") => {
+  switch (align) {
+    case "left":
+      return ":---";
+    case "center":
+      return ":---:";
+    case "right":
+      return "---:";
+    default:
+      return "---";
+  }
+};
 
 const wrap = (text: string) => `|${text}|`;
 export const convertCSVToMarkdownTable = (
   csv: ParsedCSV,
   {
     filter,
+    alignment = "",
   }: {
     filter: (col: string) => boolean;
+    alignment: Alignment | "";
   },
 ): string => {
   const { headers, body } = csv;
@@ -19,7 +35,9 @@ export const convertCSVToMarkdownTable = (
   const headerRow = wrap(
     filteredHeaders.map((header) => ` ${header} `).join("|"),
   );
-  const separator = wrap(filteredHeaders.map(() => " --- ").join("|"));
+  const separator = wrap(
+    filteredHeaders.map(() => ` ${getAlignSymbol(alignment)} `).join("|"),
+  );
   const bodyRows = body.map((row) => {
     return wrap(filteredHeaders.map((header) => ` ${row[header]} `).join("|"));
   });
