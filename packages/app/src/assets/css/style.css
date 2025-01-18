@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :is(html, body) {
+    @apply h-full bg-gray-100;
+  }
+}
