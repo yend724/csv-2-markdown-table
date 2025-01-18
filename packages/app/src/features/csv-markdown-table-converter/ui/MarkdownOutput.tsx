@@ -17,7 +17,7 @@ export const MarkdownOutput: React.FC<Props> = ({
 
 	return (
 		<div className="grid gap-4">
-			<div className="flex flex-wrap items-center h-8 justify-between gap-4">
+			<div className="flex flex-wrap items-center h-8 justify-between gap-2">
 				<div className="flex items-center gap-2">
 					<h2 className="font-semibold">Markdown Output</h2>
 					<SelectAlignment onChange={onAlignmentChange} />
@@ -27,7 +27,7 @@ export const MarkdownOutput: React.FC<Props> = ({
 					onClick={() => copyToClipboard(value)}
 					className="rounded-md bg-blue-50 px-2 py-1 font-medium text-blue-600 text-sm hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
 				>
-					{isCopied ? "Copied!" : "Copy"}
+					{isCopied ? "Copied" : "Copy"}
 				</button>
 			</div>
 			<TextArea
