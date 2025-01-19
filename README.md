@@ -1,19 +1,28 @@
 # CSV 2 Markdown Table
 
-CSVデータをMarkdownテーブル形式に変換するWebアプリケーションです。
+English | [日本語](./README.ja.md)
 
-## 機能
+A web application that converts CSV data into Markdown table format.
 
-- CSVデータのMarkdownテーブルへの変換
-- 列の選択機能
-- テキストの配置調整（左寄せ、中央寄せ、右寄せ）
-- テーブルのプレビュー表示
-- 変換結果のクリップボードへのコピー
+## Features
+
+- Convert CSV data to Markdown table format
+- Column selection
+- Text alignment options (left, center, right)
+- Table preview
+- Copy conversion results to clipboard
 
 ## URL
 
 https://csv-2-markdown-table.yend.dev/
 
-## ライセンス
+## Tech Stack
 
-MIT License - 詳細は[LICENSE](./LICENSE)ファイルを参照してください。
+- React
+- TypeScript
+- Tailwind CSS
+- Vite
+
+## License
+
+MIT License - See [LICENSE](./LICENSE) file for details.
