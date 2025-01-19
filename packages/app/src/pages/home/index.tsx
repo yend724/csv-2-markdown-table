@@ -9,59 +9,60 @@ import { Footer } from "../../shared/ui/footer";
 import { Header } from "../../shared/ui/header";
 
 const App = () => {
-  const { rawCsv, setRawCsv, parsedCsv, errorMessage } = useCSVProcessor();
-  const { selectedHeaders, handleHeaderToggle } = useHeaderSelector(parsedCsv);
-  const { markdownTable, handleAlignment } = useMarkdownConverter(
-    parsedCsv,
-    selectedHeaders,
-    "",
-  );
+	const { rawCsv, setRawCsv, parsedCsv, errorMessage } = useCSVProcessor();
+	const { selectedHeaders, handleHeaderToggle } = useHeaderSelector(parsedCsv);
+	const { markdownTable, alignment, handleAlignment } = useMarkdownConverter(
+		parsedCsv,
+		selectedHeaders,
+		"",
+	);
 
-  return (
-    <div className="grid h-full min-h-svh grid-rows-[auto_1fr_auto] gap-8 px-4 py-8 pb-4">
-      <Header />
-      <main>
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div className="space-y-4">
-              <div className="rounded-lg bg-white p-4 shadow">
-                <CSVInput
-                  value={rawCsv}
-                  onChange={(e) => setRawCsv(e.target.value)}
-                  errorMessage={errorMessage}
-                />
-              </div>
-              <div className="rounded-lg bg-white p-4 shadow">
-                <HeaderSelector
-                  headers={parsedCsv.headers}
-                  selectedHeaders={selectedHeaders}
-                  onHeaderToggle={handleHeaderToggle}
-                />
-              </div>
-            </div>
-            <div className="space-y-4">
-              <div className="rounded-lg bg-white p-4 shadow">
-                <MarkdownOutput
-                  value={markdownTable}
-                  onAlignmentChange={handleAlignment}
-                />
-              </div>
-              <div className="rounded-lg bg-white p-4 shadow">
-                <TablePreview
-                  headers={parsedCsv.headers}
-                  rows={parsedCsv.body.map((row) =>
-                    parsedCsv.headers.map((header) => row[header]),
-                  )}
-                  selectedHeaders={selectedHeaders}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-      <Footer />
-    </div>
-  );
+	return (
+		<div className="grid h-full min-h-svh grid-rows-[auto_1fr_auto] gap-8 px-4 py-8 pb-4">
+			<Header />
+			<main>
+				<div className="mx-auto max-w-7xl">
+					<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+						<div className="space-y-4">
+							<div className="rounded-lg bg-white p-4 shadow">
+								<CSVInput
+									value={rawCsv}
+									onChange={(e) => setRawCsv(e.target.value)}
+									errorMessage={errorMessage}
+								/>
+							</div>
+							<div className="rounded-lg bg-white p-4 shadow">
+								<HeaderSelector
+									headers={parsedCsv.headers}
+									selectedHeaders={selectedHeaders}
+									onHeaderToggle={handleHeaderToggle}
+								/>
+							</div>
+						</div>
+						<div className="space-y-4">
+							<div className="rounded-lg bg-white p-4 shadow">
+								<MarkdownOutput
+									value={markdownTable}
+									onAlignmentChange={handleAlignment}
+								/>
+							</div>
+							<div className="rounded-lg bg-white p-4 shadow">
+								<TablePreview
+									headers={parsedCsv.headers}
+									rows={parsedCsv.body.map((row) =>
+										parsedCsv.headers.map((header) => row[header]),
+									)}
+									selectedHeaders={selectedHeaders}
+									alignment={alignment}
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+			<Footer />
+		</div>
+	);
 };
 
 export default App;
