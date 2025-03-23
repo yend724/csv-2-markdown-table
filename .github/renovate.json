@@ -1,13 +1,15 @@
 {
-  "extends": ["config:recommended"],
-  "dependencyDashboard": false,
-  "timezone": "Asia/Tokyo",
-  "ignoreTests": true,
-  "schedule": ["every weekend"],
-  "assignees": ["@yend724"],
-  "packageRules": [
-    {
-      "matchUpdateTypes": ["patch"]
-    }
-  ]
+	"extends": ["config:recommended"],
+	"dependencyDashboard": false,
+	"timezone": "Asia/Tokyo",
+	"ignoreTests": true,
+	"schedule": ["every weekend"],
+	"assignees": ["@yend724"],
+	"packageRules": [
+		{
+			"matchUpdateTypes": ["patch"],
+			"groupName": "patch updates",
+			"automerge": true
+		}
+	]
 }
