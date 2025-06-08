@@ -8,5 +8,10 @@
 		"preview": "npm run preview --ws --if-present",
 		"lint": "npm run lint --ws --if-present"
 	},
-	"workspaces": ["packages/app"]
+	"workspaces": [
+		"packages/app"
+	],
+	"dependencies": {
+		"@tailwindcss/postcss": "^4.1.8"
+	}
 }
