@@ -13,6 +13,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@eslint/js": "^9.31.0",
     "csv-parse": "^6.0.0",
     "lucide-react": "^0.525.0",
     "react": "^19.0.0",
@@ -21,7 +22,7 @@
   "devDependencies": {
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "@vitejs/plugin-react": "^4.3.4",
+    "@vitejs/plugin-react": "^4.6.0",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.31.0",
     "eslint-config-prettier": "^10.1.5",

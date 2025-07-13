@@ -22,7 +22,7 @@ export const parseCSV = async (csv: string) => {
         },
         skip_empty_lines: true,
       },
-      (err, data) => {
+      (err, data: CSVBody) => {
         if (err) {
           resolve({
             success: false,
