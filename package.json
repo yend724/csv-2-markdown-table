@@ -12,6 +12,7 @@
 		"packages/app"
 	],
 	"dependencies": {
-		"@tailwindcss/postcss": "^4.1.8"
+		"@tailwindcss/postcss": "^4.1.8",
+		"eslint": "^9.31.0"
 	}
 }
