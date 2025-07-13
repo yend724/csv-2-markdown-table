@@ -6,7 +6,7 @@ interface UseCopyToClipboardReturn {
 }
 
 export const useCopyToClipboard = (
-  duration = 2000,
+  duration = 2000
 ): UseCopyToClipboardReturn => {
   const [isCopied, setIsCopied] = useState(false);
   const timerId = useRef<number | null>(null);
@@ -26,7 +26,7 @@ export const useCopyToClipboard = (
         console.error("Failed to copy:", error);
       }
     },
-    [duration],
+    [duration]
   );
 
   return {

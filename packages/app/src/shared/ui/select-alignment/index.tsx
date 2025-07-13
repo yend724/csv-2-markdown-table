@@ -17,7 +17,7 @@ export const SelectAlignment: React.FC<Props> = ({ onChange }) => {
 
   return (
     <div className="flex items-center gap-2">
-      {ALIGNMENT_OPTIONS.map((option) => {
+      {ALIGNMENT_OPTIONS.map(option => {
         const Icon = ALIGNMENT_ICONS[option];
         return (
           <button

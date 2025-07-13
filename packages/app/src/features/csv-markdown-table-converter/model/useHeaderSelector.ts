@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import type { ParsedCSV } from "../../../shared/lib/csv";
 
 export const useHeaderSelector = (parsedCsv: ParsedCSV) => {
@@ -10,9 +11,9 @@ export const useHeaderSelector = (parsedCsv: ParsedCSV) => {
 
   const handleHeaderToggle = (header: string, checked: boolean) => {
     if (checked) {
-      setSelectedHeaders((prev) => [...prev, header]);
+      setSelectedHeaders(prev => [...prev, header]);
     } else {
-      setSelectedHeaders((prev) => prev.filter((col) => col !== header));
+      setSelectedHeaders(prev => prev.filter(col => col !== header));
     }
   };
 

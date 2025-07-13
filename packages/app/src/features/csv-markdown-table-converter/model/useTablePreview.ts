@@ -26,7 +26,7 @@ export const useTablePreview = ({
 
   const getSelectedColumnData = (
     rowIndex: number,
-    colIndex: number,
+    colIndex: number
   ): string => {
     return rows[rowIndex][colIndex] || "";
   };

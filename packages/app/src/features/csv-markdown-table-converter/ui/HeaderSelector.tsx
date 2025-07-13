@@ -23,7 +23,7 @@ export const HeaderSelector = ({
                 id={`${i}-${header}`}
                 type="checkbox"
                 checked={selectedHeaders.includes(header)}
-                onChange={(e) => onHeaderToggle(header, e.target.checked)}
+                onChange={e => onHeaderToggle(header, e.target.checked)}
                 className="size-4 cursor-pointer rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               />
               <span className="text-sm">{header}</span>

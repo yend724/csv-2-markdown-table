@@ -23,7 +23,7 @@ export const convertCSVToMarkdownTable = (
   }: {
     filter: (col: string) => boolean;
     alignment: Alignment | "";
-  },
+  }
 ): string => {
   const { headers, body } = csv;
 
@@ -33,13 +33,13 @@ export const convertCSVToMarkdownTable = (
 
   const filteredHeaders = headers.filter(filter);
   const headerRow = wrap(
-    filteredHeaders.map((header) => ` ${header} `).join("|"),
+    filteredHeaders.map(header => ` ${header} `).join("|")
   );
   const separator = wrap(
-    filteredHeaders.map(() => ` ${getAlignSymbol(alignment)} `).join("|"),
+    filteredHeaders.map(() => ` ${getAlignSymbol(alignment)} `).join("|")
   );
-  const bodyRows = body.map((row) => {
-    return wrap(filteredHeaders.map((header) => ` ${row[header]} `).join("|"));
+  const bodyRows = body.map(row => {
+    return wrap(filteredHeaders.map(header => ` ${row[header]} `).join("|"));
   });
   const markdownTable = [headerRow, separator, ...bodyRows].join("\n");
 

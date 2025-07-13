@@ -1,4 +1,5 @@
 import { parse } from "csv-parse/browser/esm";
+
 import type { Result } from "../../model/result";
 
 let csvHeaders: string[] = [];
@@ -11,11 +12,11 @@ export type ParsedCSV = {
 };
 type ParsedCSVResult = Result<ParsedCSV, string>;
 export const parseCSV = async (csv: string) => {
-  return new Promise<ParsedCSVResult>((resolve) => {
+  return new Promise<ParsedCSVResult>(resolve => {
     parse(
       csv,
       {
-        columns: (header) => {
+        columns: header => {
           csvHeaders = header;
           return header;
         },
@@ -36,7 +37,7 @@ export const parseCSV = async (csv: string) => {
             },
           });
         }
-      },
+      }
     );
   });
 };
