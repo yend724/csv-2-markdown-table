@@ -35,7 +35,7 @@ npm run build
 ## UI・SEO・アセット
 
 - UI は日本語。操作に必要なラベルを優先し、不要な番号・キャッチコピー・説明セクションを追加しない。
-- ページの `<title>` は `csv to markdown table`。
+- ページの `<title>` は `csv to markdown table`。OGP と Twitter カードのタイトルは `CSV to Markdown Table`。
 - SEO のメタ情報と構造化データは `packages/app/index.html`。
 - OGP 画像・robots.txt・サイトマップは `packages/app/public/`。
 - ヘッダーのロゴとファビコンは共通の `packages/app/public/favicon.svg` を使用する。
