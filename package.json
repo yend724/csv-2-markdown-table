@@ -1,18 +1,22 @@
 {
-	"name": "csv-2-markdown-table",
-	"private": true,
-	"version": "0.0.0",
-	"scripts": {
-		"dev": "npm run dev --ws --if-present",
-		"build": "npm run build --ws --if-present",
-		"preview": "npm run preview --ws --if-present",
-		"lint": "npm run lint --ws --if-present"
-	},
-	"workspaces": [
-		"packages/app"
-	],
-	"dependencies": {
-		"@tailwindcss/postcss": "^4.1.8",
-		"eslint": "^9.31.0"
-	}
+  "name": "csv-2-markdown-table",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "npm run dev --ws --if-present",
+    "build": "npm run build --ws --if-present",
+    "preview": "npm run preview --ws --if-present",
+    "lint": "npm run lint --ws --if-present",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "workspaces": [
+    "packages/app"
+  ],
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.8",
+    "eslint": "^10.0.0"
+  },
+  "engines": {
+    "node": ">=24.0.0 <25"
+  }
 }

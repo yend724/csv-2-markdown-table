@@ -1,20 +1,26 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import type { ParsedCSV } from "../../../shared/lib/csv";
 
 export const useHeaderSelector = (parsedCsv: ParsedCSV) => {
-  const [selectedHeaders, setSelectedHeaders] = useState<string[]>([]);
-
-  useEffect(() => {
-    setSelectedHeaders(parsedCsv.headers);
-  }, [parsedCsv.headers]);
+  const headers = parsedCsv.headers;
+  const [selection, setSelection] = useState({
+    headers,
+    selectedHeaders: headers,
+  });
+  const selectedHeaders =
+    selection.headers === headers ? selection.selectedHeaders : headers;
 
   const handleHeaderToggle = (header: string, checked: boolean) => {
-    if (checked) {
-      setSelectedHeaders(prev => [...prev, header]);
-    } else {
-      setSelectedHeaders(prev => prev.filter(col => col !== header));
-    }
+    setSelection(prev => {
+      const current = prev.headers === headers ? prev.selectedHeaders : headers;
+      return {
+        headers,
+        selectedHeaders: checked
+          ? [...current, header]
+          : current.filter(col => col !== header),
+      };
+    });
   };
 
   return {

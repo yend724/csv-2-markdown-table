@@ -1,5 +1,4 @@
 import { Check, Copy } from "lucide-react";
-
 import { useCopyToClipboard } from "../../../shared/model/copy/useCopyToClipboard";
 import {
   type Alignment,
@@ -9,35 +8,55 @@ import { TextArea } from "../../../shared/ui/textarea";
 
 type Props = {
   value: string;
+  alignment: Alignment | "";
   onAlignmentChange: (value: Alignment) => void;
 };
-export const MarkdownOutput: React.FC<Props> = ({
+export const MarkdownOutput = ({
   value,
+  alignment,
   onAlignmentChange,
-}) => {
-  const { copyToClipboard, isCopied } = useCopyToClipboard();
-
+}: Props) => {
+  const { copyToClipboard, isCopied, copyError } = useCopyToClipboard();
   return (
-    <div className="grid gap-4">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
-          <h2 className="font-semibold">Markdown Output</h2>
-          <SelectAlignment onChange={onAlignmentChange} />
-        </div>
+    <section className="panel output-panel" aria-labelledby="markdown-title">
+      <div className="panel-heading">
+        <h2 id="markdown-title">Markdown をコピー</h2>
         <button
           type="button"
+          className="primary-button"
+          disabled={!value}
           onClick={() => copyToClipboard(value)}
-          className="rounded-md bg-blue-50 p-1 font-medium text-blue-600 text-sm hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          {isCopied ? <Check size={16} /> : <Copy size={16} />}
+          {isCopied ? (
+            <Check size={16} aria-hidden="true" />
+          ) : (
+            <Copy size={16} aria-hidden="true" />
+          )}
+          <span>{isCopied ? "コピーしました" : "コピー"}</span>
         </button>
       </div>
+      <p className="field-hint">
+        入力と列の選択に合わせて、自動で変換されます。
+      </p>
       <TextArea
+        id="markdown-output"
+        aria-labelledby="markdown-title"
         readOnly
         value={value}
-        className="border border-gray-200 bg-gray-100 p-2"
-        rows={6}
+        placeholder="変換した Markdown がここに表示されます。"
       />
-    </div>
+      <div className="output-bottom">
+        <SelectAlignment value={alignment} onChange={onAlignmentChange} />
+        <span className="format-label">.md</span>
+      </div>
+      <span className="sr-only" role="status">
+        {isCopied ? "Markdown をコピーしました" : ""}
+      </span>
+      {copyError && (
+        <p role="alert" className="error-message">
+          {copyError}
+        </p>
+      )}
+    </section>
   );
 };

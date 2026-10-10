@@ -1,27 +1,85 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CSV 2 Markdown Table</title>
-    <meta name="description" content="Convert CSV data to Markdown tables instantly. An intuitive converter with live preview and custom column selection features.">
-    <meta name="keywords" content="csv converter, markdown table, csv to markdown, table converter, markdown generator">
-    <!-- 検索エンジン向け -->
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://csv-2-markdown-table.yend.dev" />
-
-    <!-- Open Graph（SNSシェア用） -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="CSV 2 Markdown Table">
-    <meta property="og:description" content="Convert CSV data to Markdown tables instantly. An intuitive converter with live preview and custom column selection features.">
-    <meta property="og:url" content="https://csv-2-markdown-table.yend.dev/">
-    <meta property="og:site_name" content="CSV 2 Markdown Table">
-
-    <meta name="author" content="YEND">
-    <meta name="format-detection" content="telephone=no">
+    <title>csv to markdown table</title>
+    <meta
+      name="description"
+      content="CSV を Markdown の表に変換する無料ツール。必要な列の選択、文字揃え、プレビュー、コピーに対応。ブラウザ内で処理し、入力データをサーバーに送信しません。"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://csv-2-markdown-table.yend.dev/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#153e35" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:title" content="CSV → Markdown テーブル変換" />
+    <meta
+      property="og:description"
+      content="貼り付けて、選んで、コピー。CSV を Markdown の表に変換する無料ツール。入力データはブラウザ内で処理します。"
+    />
+    <meta property="og:url" content="https://csv-2-markdown-table.yend.dev/" />
+    <meta property="og:site_name" content="CSV 2 Markdown Table" />
+    <meta
+      property="og:image"
+      content="https://csv-2-markdown-table.yend.dev/og-image.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1730" />
+    <meta property="og:image:height" content="909" />
+    <meta
+      property="og:image:alt"
+      content="CSV のデータを Markdown テーブルに変換。Paste. Select. Copy."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="CSV → Markdown テーブル変換" />
+    <meta
+      name="twitter:description"
+      content="CSV を貼り付けて必要な列を選択。Markdown の表をすぐにコピーできる無料ツール。"
+    />
+    <meta
+      name="twitter:image"
+      content="https://csv-2-markdown-table.yend.dev/og-image.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="CSV から Markdown の表への変換イメージ"
+    />
+    <meta name="author" content="YEND" />
+    <meta name="format-detection" content="telephone=no" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "CSV 2 Markdown Table",
+        "url": "https://csv-2-markdown-table.yend.dev/",
+        "description": "CSV を Markdown テーブルに変換する無料のブラウザツール。列選択、文字揃え、プレビュー、コピーに対応。",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "inLanguage": "ja",
+        "isAccessibleForFree": true,
+        "image": "https://csv-2-markdown-table.yend.dev/og-image.png",
+        "featureList": [
+          "CSV から Markdown への変換",
+          "出力する列の選択",
+          "文字揃え",
+          "テーブルのプレビュー",
+          "クリップボードへのコピー"
+        ]
+      }
+    </script>
   </head>
-  <body class="antialiased">
+  <body>
     <div id="root"></div>
+    <noscript
+      ><h1>CSV → Markdown テーブル変換</h1>
+      <p>
+        CSV を Markdown の表に変換する無料ツールです。変換を利用するには
+        JavaScript を有効にしてください。入力データはブラウザ内で処理されます。
+      </p></noscript
+    >
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

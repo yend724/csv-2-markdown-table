@@ -1,12 +1,4 @@
-import { useTablePreview } from "../model/useTablePreview";
-
 import type { Alignment } from "../../../shared/ui/select-alignment";
-
-const TEXT_ALIGNMENT_MAP = {
-  left: "left",
-  center: "center",
-  right: "right",
-} as const;
 
 type Props = {
   headers: string[];
@@ -14,61 +6,58 @@ type Props = {
   selectedHeaders: string[];
   alignment: Alignment | "";
 };
-export const TablePreview: React.FC<Props> = ({
+export const TablePreview = ({
   headers,
   rows,
   selectedHeaders,
   alignment,
-}) => {
-  const { selectedIndices, hasContent, getSelectedColumnData } =
-    useTablePreview({
-      headers,
-      rows,
-      selectedHeaders,
-    });
-
-  if (!hasContent) {
-    return null;
-  }
-
+}: Props) => {
+  const indices = headers.flatMap((header, index) =>
+    selectedHeaders.includes(header) ? [index] : []
+  );
   return (
-    <div className="space-y-4">
-      <h2 className="font-semibold">Table Preview</h2>
-      <div className="overflow-x-auto">
-        <table
-          className="w-full min-w-full divide-y divide-gray-200 text-start"
-          style={{
-            textAlign: alignment ? TEXT_ALIGNMENT_MAP[alignment] : "left",
-          }}
+    <section className="preview-section" aria-labelledby="preview-title">
+      <div className="panel-heading">
+        <h2 id="preview-title">テーブルのプレビュー</h2>
+        <span className="count">
+          {rows.length} 行 × {indices.length} 列
+        </span>
+      </div>
+      {indices.length ? (
+        <div
+          className="table-scroll"
+          tabIndex={0}
+          role="region"
+          aria-label="変換結果の表。横にスクロールできます。"
         >
-          <thead className="bg-gray-50">
-            <tr>
-              {selectedIndices.map(index => (
-                <th
-                  key={headers[index]}
-                  className="px-4 py-3 font-medium text-gray-600 text-sm"
-                >
-                  {headers[index]}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200 bg-white">
-            {rows.map((_, rowIndex) => (
-              <tr key={rowIndex.toString()}>
-                {selectedIndices.map(colIndex => (
-                  <td
-                    key={`${rowIndex}-${colIndex}`}
-                    className="whitespace-nowrap px-4 py-3 text-gray-600 text-sm"
-                  >
-                    {getSelectedColumnData(rowIndex, colIndex)}
-                  </td>
+          <table style={{ textAlign: alignment || "left" }}>
+            <caption className="sr-only">選択した列のプレビュー</caption>
+            <thead>
+              <tr>
+                {indices.map(i => (
+                  <th scope="col" key={i}>
+                    {headers[i]}
+                  </th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+            </thead>
+            <tbody>
+              {rows.map((row, r) => (
+                <tr key={r}>
+                  {indices.map(c => (
+                    <td key={c}>{row[c]}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="empty-preview">
+          <span aria-hidden="true">| — | — |</span>
+          <p>CSV を入力して列を選ぶと、ここで表を確認できます。</p>
+        </div>
+      )}
+    </section>
   );
 };

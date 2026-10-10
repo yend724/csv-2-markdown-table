@@ -14,6 +14,15 @@ const getAlignSymbol = (align: Alignment | "") => {
   }
 };
 
+const escapeCell = (text: string) =>
+  text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\\/g, "\\\\")
+    .replace(/\|/g, "\\|")
+    .replace(/\r\n|\r|\n/g, "<br>");
+
 const wrap = (text: string) => `|${text}|`;
 export const convertCSVToMarkdownTable = (
   csv: ParsedCSV,
@@ -32,14 +41,19 @@ export const convertCSVToMarkdownTable = (
   }
 
   const filteredHeaders = headers.filter(filter);
+  if (filteredHeaders.length === 0) return "";
   const headerRow = wrap(
-    filteredHeaders.map(header => ` ${header} `).join("|")
+    filteredHeaders.map(header => ` ${escapeCell(header)} `).join("|")
   );
   const separator = wrap(
     filteredHeaders.map(() => ` ${getAlignSymbol(alignment)} `).join("|")
   );
   const bodyRows = body.map(row => {
-    return wrap(filteredHeaders.map(header => ` ${row[header]} `).join("|"));
+    return wrap(
+      filteredHeaders
+        .map(header => ` ${escapeCell(row[header] ?? "")} `)
+        .join("|")
+    );
   });
   const markdownTable = [headerRow, separator, ...bodyRows].join("\n");
 

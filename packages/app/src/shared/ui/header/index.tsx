@@ -1,17 +1,23 @@
-export const Header: React.FC = () => {
-  return (
-    <header className="mx-auto w-full max-w-7xl">
-      <div className="flex items-center justify-between">
-        <h1 className="font-bold text-xl">CSV 2 Markdown Table</h1>
-        <a
-          href="https://github.com/yend724/csv-2-markdown-table"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-semibold text-sky-600 underline hover:no-underline"
-        >
-          GitHub
-        </a>
-      </div>
-    </header>
-  );
-};
+export const Header = () => (
+  <header className="site-header">
+    <a className="wordmark" href="/" aria-label="CSV 2 Markdown Table ホーム">
+      <img
+        className="brand-symbol"
+        src="/favicon.svg"
+        width="28"
+        height="28"
+        alt=""
+        aria-hidden="true"
+      />
+      <span>CSV 2 Markdown Table</span>
+    </a>
+    <a
+      className="text-link"
+      href="https://github.com/yend724/csv-2-markdown-table"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      GitHub ↗
+    </a>
+  </header>
+);
