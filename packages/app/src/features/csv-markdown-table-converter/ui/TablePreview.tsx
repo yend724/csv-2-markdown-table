@@ -1,3 +1,5 @@
+import styles from "../../../shared/ui/converter.module.css";
+
 import type { Alignment } from "../../../shared/ui/select-alignment";
 
 type Props = {
@@ -16,22 +18,27 @@ export const TablePreview = ({
     selectedHeaders.includes(header) ? [index] : []
   );
   return (
-    <section className="preview-section" aria-labelledby="preview-title">
-      <div className="panel-heading">
+    <section
+      className={styles["preview-section"]}
+      aria-labelledby="preview-title"
+    >
+      <div className={styles["panel-heading"]}>
         <h2 id="preview-title">テーブルのプレビュー</h2>
-        <span className="count">
+        <span className={styles["count"]}>
           {rows.length} 行 × {indices.length} 列
         </span>
       </div>
       {indices.length ? (
         <div
-          className="table-scroll"
+          className={styles["table-scroll"]}
           tabIndex={0}
           role="region"
           aria-label="変換結果の表。横にスクロールできます。"
         >
           <table style={{ textAlign: alignment || "left" }}>
-            <caption className="sr-only">選択した列のプレビュー</caption>
+            <caption className={styles["sr-only"]}>
+              選択した列のプレビュー
+            </caption>
             <thead>
               <tr>
                 {indices.map(i => (
@@ -53,7 +60,7 @@ export const TablePreview = ({
           </table>
         </div>
       ) : (
-        <div className="empty-preview">
+        <div className={styles["empty-preview"]}>
           <span aria-hidden="true">| — | — |</span>
           <p>CSV を入力して列を選ぶと、ここで表を確認できます。</p>
         </div>

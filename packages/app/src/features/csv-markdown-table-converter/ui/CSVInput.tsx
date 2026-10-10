@@ -1,3 +1,5 @@
+import styles from "../../../shared/ui/converter.module.css";
+
 import { TextArea } from "../../../shared/ui/textarea";
 import type { ChangeEvent } from "react";
 
@@ -15,10 +17,10 @@ export const CSVInput = ({
   onClear,
   errorMessage,
 }: Props) => (
-  <section className="panel input-panel" aria-labelledby="csv-title">
-    <div className="panel-heading">
+  <section className={styles["panel"]} aria-labelledby="csv-title">
+    <div className={styles["panel-heading"]}>
       <h2 id="csv-title">CSV を入力</h2>
-      <div className="text-actions">
+      <div className={styles["text-actions"]}>
         <button type="button" onClick={onSample}>
           サンプル
         </button>
@@ -27,7 +29,7 @@ export const CSVInput = ({
         </button>
       </div>
     </div>
-    <p className="field-hint" id="csv-hint">
+    <p className={styles["field-hint"]} id="csv-hint">
       1 行目を見出しとして、カンマ区切りのデータを貼り付けてください。
     </p>
     <TextArea
@@ -40,7 +42,7 @@ export const CSVInput = ({
       placeholder={"名前,役割,拠点\n田中,デザイン,東京"}
     />
     {errorMessage && (
-      <p className="error-message" id="csv-error" role="alert">
+      <p className={styles["error-message"]} id="csv-error" role="alert">
         {errorMessage}
       </p>
     )}

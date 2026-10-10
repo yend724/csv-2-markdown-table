@@ -35,9 +35,11 @@ npm run build
 ## UI・SEO・アセット
 
 - UI は日本語。操作に必要なラベルを優先し、不要な番号・キャッチコピー・説明セクションを追加しない。
-- ページの `<title>` は `csv to markdown table`。OGP と Twitter カードのタイトルは `CSV to Markdown Table`。
+- ページの `<title>` は `CSV to Markdown Table`。OGP と Twitter カードのタイトルは `CSV to Markdown Table`。
 - SEO のメタ情報と構造化データは `packages/app/index.html`。
 - OGP 画像・robots.txt・サイトマップは `packages/app/public/`。
+- OGP は通常のアプリ画面を Playwright の Chromium でスクリーンショットして生成する。独自の OGP 用レイアウトは作らない。初回は `npx playwright install chromium`、再生成は `npm run generate:og`。スクリプトがアプリをビルドし、ローカルで表示して撮影する。生成した `packages/app/public/og-image.png` をコミットする。通常のビルドはコミット済み画像を使用する。
+- UI のスタイルは CSS Modules。共通スタイルは `src/shared/ui/converter.module.css`、グローバル CSS はリセットと基本設定だけにする。
 - ヘッダーのロゴとファビコンは共通の `packages/app/public/favicon.svg` を使用する。
 - 公開 URL は `https://csv-2-markdown-table.yend.dev/`。canonical、OGP、サイトマップの URL を一致させる。
 - Cloudflare Pages のビルドコマンドは `npm run build`、公開ディレクトリは `packages/app/dist`。
