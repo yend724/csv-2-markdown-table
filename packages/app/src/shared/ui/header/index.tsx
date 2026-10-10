@@ -1,9 +1,14 @@
 export const Header = () => (
   <header className="site-header">
     <a className="wordmark" href="/" aria-label="CSV 2 Markdown Table ホーム">
-      <span className="brand-symbol" aria-hidden="true">
-        |↔|
-      </span>
+      <img
+        className="brand-symbol"
+        src="/favicon.svg"
+        width="28"
+        height="28"
+        alt=""
+        aria-hidden="true"
+      />
       <span>CSV 2 Markdown Table</span>
     </a>
     <a
