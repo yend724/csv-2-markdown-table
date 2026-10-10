@@ -6,7 +6,8 @@
     "dev": "npm run dev --ws --if-present",
     "build": "npm run build --ws --if-present",
     "preview": "npm run preview --ws --if-present",
-    "lint": "npm run lint --ws --if-present"
+    "lint": "npm run lint --ws --if-present",
+    "test": "node --test tests/*.test.mjs"
   },
   "workspaces": [
     "packages/app"

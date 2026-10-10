@@ -1,5 +1,4 @@
-export const DEFAULT_CSV_INPUT = `name,age,city,hobby,favorite food
-John,25,New York,gaming,pizza
-Emma,30,London,reading,sushi
-Luis,28,Madrid,soccer,paella
-Sara,33,Paris,painting,croissant`;
+export const DEFAULT_CSV_INPUT = `名前,役割,拠点,好きなもの
+田中,デザイナー,東京,コーヒー
+佐藤,エンジニア,京都,読書
+鈴木,ライター,福岡,写真`;

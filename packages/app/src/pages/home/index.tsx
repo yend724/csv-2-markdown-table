@@ -1,3 +1,4 @@
+import { DEFAULT_CSV_INPUT } from "../../app/config";
 import { useCSVProcessor } from "../../features/csv-markdown-table-converter/model/useCSVProcessor";
 import { useHeaderSelector } from "../../features/csv-markdown-table-converter/model/useHeaderSelector";
 import { useMarkdownConverter } from "../../features/csv-markdown-table-converter/model/useMarkdownConverter";
@@ -9,60 +10,64 @@ import { Footer } from "../../shared/ui/footer";
 import { Header } from "../../shared/ui/header";
 
 const App = () => {
-  const { rawCsv, setRawCsv, parsedCsv, errorMessage } = useCSVProcessor();
+  const { rawCsv, setRawCsv, parsedCsv, errorMessage, isProcessing } =
+    useCSVProcessor();
   const { selectedHeaders, handleHeaderToggle } = useHeaderSelector(parsedCsv);
   const { markdownTable, alignment, handleAlignment } = useMarkdownConverter(
     parsedCsv,
     selectedHeaders,
     ""
   );
-
   return (
-    <div className="grid h-full min-h-svh grid-rows-[auto_1fr_auto] gap-8 px-4 py-8 pb-4">
+    <div className="site-shell">
+      <a className="skip-link" href="#main">
+        変換ツールへスキップ
+      </a>
       <Header />
-      <main>
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div className="space-y-4">
-              <div className="rounded-lg bg-white p-4 shadow">
-                <CSVInput
-                  value={rawCsv}
-                  onChange={e => setRawCsv(e.target.value)}
-                  errorMessage={errorMessage}
-                />
-              </div>
-              <div className="rounded-lg bg-white p-4 shadow">
-                <HeaderSelector
-                  headers={parsedCsv.headers}
-                  selectedHeaders={selectedHeaders}
-                  onHeaderToggle={handleHeaderToggle}
-                />
-              </div>
-            </div>
-            <div className="space-y-4">
-              <div className="rounded-lg bg-white p-4 shadow">
-                <MarkdownOutput
-                  value={markdownTable}
-                  onAlignmentChange={handleAlignment}
-                />
-              </div>
-              <div className="rounded-lg bg-white p-4 shadow">
-                <TablePreview
-                  headers={parsedCsv.headers}
-                  rows={parsedCsv.body.map(row =>
-                    parsedCsv.headers.map(header => row[header])
-                  )}
-                  selectedHeaders={selectedHeaders}
-                  alignment={alignment}
-                />
-              </div>
-            </div>
-          </div>
+      <main id="main">
+        <div className="intro">
+          <h1>
+            CSV <span aria-hidden="true">→</span>
+            <span className="sr-only">から</span> Markdown
+          </h1>
+          <p className="intro-description">
+            CSV を貼り付けて、見やすい Markdown の表に。
+            <br className="desktop-break" />
+            必要な列だけ選んで、そのままコピー。
+          </p>
         </div>
+        <div className="converter" aria-busy={isProcessing}>
+          <div className="input-side">
+            <CSVInput
+              value={rawCsv}
+              onChange={e => setRawCsv(e.target.value)}
+              onSample={() => setRawCsv(DEFAULT_CSV_INPUT)}
+              onClear={() => setRawCsv("")}
+              errorMessage={errorMessage}
+            />
+            <HeaderSelector
+              headers={parsedCsv.headers}
+              selectedHeaders={selectedHeaders}
+              onHeaderToggle={handleHeaderToggle}
+            />
+          </div>
+          <MarkdownOutput
+            value={isProcessing ? "" : markdownTable}
+            alignment={alignment}
+            onAlignmentChange={handleAlignment}
+          />
+        </div>
+        <TablePreview
+          headers={parsedCsv.headers}
+          rows={parsedCsv.body.map(row =>
+            parsedCsv.headers.map(header => row[header])
+          )}
+          selectedHeaders={selectedHeaders}
+          alignment={alignment}
+        />
       </main>
       <Footer />
     </div>
   );
 };
-
 export default App;

@@ -1,7 +1,11 @@
-export const Footer: React.FC = () => {
-  return (
-    <footer className="text-center">
-      <small className="text-xs">All rights reserved 2025, YEND.</small>
-    </footer>
-  );
-};
+export const Footer = () => (
+  <footer className="site-footer">
+    <span>CSV 2 Markdown Table</span>
+    <span>
+      Made by YEND ·{" "}
+      <a href="https://github.com/yend724/csv-2-markdown-table/blob/main/LICENSE">
+        MIT License
+      </a>
+    </span>
+  </footer>
+);
