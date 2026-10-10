@@ -1,5 +1,7 @@
+import styles from "../converter.module.css";
+
 export const Footer = () => (
-  <footer className="site-footer">
+  <footer className={styles["site-footer"]}>
     <span>CSV 2 Markdown Table</span>
     <span>
       Made by YEND ·{" "}

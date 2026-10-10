@@ -1,3 +1,5 @@
+import styles from "../converter.module.css";
+
 import { AlignCenter, AlignLeft, AlignRight } from "lucide-react";
 
 const OPTIONS = [
@@ -12,7 +14,11 @@ type Props = {
 };
 
 export const SelectAlignment = ({ value, onChange }: Props) => (
-  <div className="alignment-control" role="group" aria-label="表の文字揃え">
+  <div
+    className={styles["alignment-control"]}
+    role="group"
+    aria-label="表の文字揃え"
+  >
     <span>文字揃え</span>
     {OPTIONS.map(({ value: option, label, Icon }) => (
       <button

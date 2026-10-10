@@ -1,3 +1,5 @@
+import styles from "../converter.module.css";
+
 import type { ComponentPropsWithoutRef } from "react";
 
 type Props = ComponentPropsWithoutRef<"button"> & {
@@ -12,7 +14,7 @@ export const Button: React.FC<Props> = ({
   return (
     <button
       type="button"
-      className={`grid grid-flow-col place-items-center gap-x-2 rounded bg-blue-500 px-2 py-1 text-white hover:bg-blue-700 ${className}`}
+      className={`${styles["primary-button"]} ${className ?? ""}`}
       {...props}
     >
       {icon && <span>{icon}</span>}

@@ -1,3 +1,5 @@
+import styles from "../../../shared/ui/converter.module.css";
+
 import { Check, Copy } from "lucide-react";
 import { useCopyToClipboard } from "../../../shared/model/copy/useCopyToClipboard";
 import {
@@ -18,12 +20,15 @@ export const MarkdownOutput = ({
 }: Props) => {
   const { copyToClipboard, isCopied, copyError } = useCopyToClipboard();
   return (
-    <section className="panel output-panel" aria-labelledby="markdown-title">
-      <div className="panel-heading">
+    <section
+      className={`${styles["panel"]} ${styles["output-panel"]}`}
+      aria-labelledby="markdown-title"
+    >
+      <div className={styles["panel-heading"]}>
         <h2 id="markdown-title">Markdown をコピー</h2>
         <button
           type="button"
-          className="primary-button"
+          className={styles["primary-button"]}
           disabled={!value}
           onClick={() => copyToClipboard(value)}
         >
@@ -35,7 +40,7 @@ export const MarkdownOutput = ({
           <span>{isCopied ? "コピーしました" : "コピー"}</span>
         </button>
       </div>
-      <p className="field-hint">
+      <p className={styles["field-hint"]}>
         入力と列の選択に合わせて、自動で変換されます。
       </p>
       <TextArea
@@ -45,15 +50,15 @@ export const MarkdownOutput = ({
         value={value}
         placeholder="変換した Markdown がここに表示されます。"
       />
-      <div className="output-bottom">
+      <div className={styles["output-bottom"]}>
         <SelectAlignment value={alignment} onChange={onAlignmentChange} />
-        <span className="format-label">.md</span>
+        <span className={styles["format-label"]}>.md</span>
       </div>
-      <span className="sr-only" role="status">
+      <span className={styles["sr-only"]} role="status">
         {isCopied ? "Markdown をコピーしました" : ""}
       </span>
       {copyError && (
-        <p role="alert" className="error-message">
+        <p role="alert" className={styles["error-message"]}>
           {copyError}
         </p>
       )}
